@@ -67,25 +67,36 @@ class _FeedsWidgetState extends State<FeedsWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const PriceWidget(),
+                   Flexible(
+                     flex: 4,
+                     child: PriceWidget(
+                       salePrice: 2.99,
+                       price: 5.9,
+                       textPrice: _quantityTextController.text,
+                       isOnSale: true,
+                     ),
+                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Flexible(
                     child: Row(
                       children: [
-                        FittedBox(
-                          child: TextWidget(
-                            text: 'KG',
-                            color: color,
-                            textSize: 18,
-                            isTitle: true,
+                        Flexible(
+                          flex: 1,
+                          child: FittedBox(
+                            child: TextWidget(
+                              text: 'KG',
+                              color: color,
+                              textSize: 18,
+                              isTitle: true,
+                            ),
                           ),
                         ),
                         const SizedBox(
                           width: 5,
                         ),
-                        Flexible(
+                        Flexible(flex: 2,
                             child: TextFormField(
                           controller: _quantityTextController,
                           key: const ValueKey('10'),
@@ -93,6 +104,11 @@ class _FeedsWidgetState extends State<FeedsWidget> {
                           keyboardType: TextInputType.number,
                           maxLines: 1,
                           enabled: true,
+                          onChanged: (valueee){
+                            setState(() {
+                              
+                            });
+                          },
                           inputFormatters: [
                             FilteringTextInputFormatter.allow(
                               RegExp('[0-9.]'),
@@ -118,9 +134,9 @@ class _FeedsWidgetState extends State<FeedsWidget> {
                 ),
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(Theme.of(context).cardColor),
+                        WidgetStateProperty.all(Theme.of(context).cardColor),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(12.0),
