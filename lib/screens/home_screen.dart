@@ -6,6 +6,8 @@ import 'package:grocery_app/services/utils.dart';
 import 'package:grocery_app/widgets/text_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../inner_screens/on_sale_screen.dart';
+import '../services/global_methods.dart';
 import '../widgets/feed_items.dart';
 import '../widgets/on_sale_widget.dart';
 
@@ -30,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final themeState = utils.getTheme;
     final Color color = Utils(context).color;
     Size size = utils.getScreenSize;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -56,7 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 6,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                GlobalMethods.navigateTo(
+                    ctx: context, routeName: OnSaleScreen.routeName);
+              },
               child: TextWidget(
                 text: 'View all',
                 maxLines: 1,
@@ -140,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // crossAxisSpacing: 10,
               childAspectRatio: size.width / (size.height * 0.59),
               children: List.generate(4, (index) {
-                return  const FeedsWidget();
+                return const FeedsWidget();
               }),
             )
           ],
