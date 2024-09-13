@@ -4,6 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:grocery_app/widgets/price_widget.dart';
 import 'package:grocery_app/widgets/text_widget.dart';
 
+import '../inner_screens/on_sale_screen.dart';
+import '../inner_screens/product_details.dart';
+import '../services/global_methods.dart';
 import '../services/utils.dart';
 import 'heart_btn.dart';
 
@@ -38,7 +41,10 @@ class _FeedsWidgetState extends State<FeedsWidget> {
         borderRadius: BorderRadius.circular(12),
         color: Theme.of(context).cardColor,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            GlobalMethods.navigateTo(
+                ctx: context, routeName: ProductDetails.routeName);
+          },
           borderRadius: BorderRadius.circular(12),
           child: Column(children: [
             FancyShimmerImage(
@@ -67,23 +73,23 @@ class _FeedsWidgetState extends State<FeedsWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   Flexible(
-                     flex: 4,
-                     child: PriceWidget(
-                       salePrice: 2.99,
-                       price: 5.9,
-                       textPrice: _quantityTextController.text,
-                       isOnSale: true,
-                     ),
-                   ),
+                  Flexible(
+                    flex: 4,
+                    child: PriceWidget(
+                      salePrice: 2.99,
+                      price: 5.9,
+                      textPrice: _quantityTextController.text,
+                      isOnSale: true,
+                    ),
+                  ),
                   const SizedBox(
-                    width: 8,
+                    width: 3,
                   ),
                   Flexible(
                     child: Row(
                       children: [
                         Flexible(
-                          flex: 1,
+                          flex: 3,
                           child: FittedBox(
                             child: TextWidget(
                               text: 'KG',
@@ -96,25 +102,25 @@ class _FeedsWidgetState extends State<FeedsWidget> {
                         const SizedBox(
                           width: 5,
                         ),
-                        Flexible(flex: 2,
+                        Flexible(
+                            flex: 2,
+                            // TextField can be used also instead of the textFormField
                             child: TextFormField(
-                          controller: _quantityTextController,
-                          key: const ValueKey('10'),
-                          style: TextStyle(color: color, fontSize: 18),
-                          keyboardType: TextInputType.number,
-                          maxLines: 1,
-                          enabled: true,
-                          onChanged: (valueee){
-                            setState(() {
-                              
-                            });
-                          },
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(
-                              RegExp('[0-9.]'),
-                            ),
-                          ],
-                        ))
+                              controller: _quantityTextController,
+                              key: const ValueKey('10'),
+                              style: TextStyle(color: color, fontSize: 18),
+                              keyboardType: TextInputType.number,
+                              maxLines: 1,
+                              enabled: true,
+                              onChanged: (valueee) {
+                                setState(() {});
+                              },
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                  RegExp('[0-9.]'),
+                                ),
+                              ],
+                            ))
                       ],
                     ),
                   )
