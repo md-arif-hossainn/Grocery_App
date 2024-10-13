@@ -1,12 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:grocery_app/screens/viewed_recently/viewed_recently.dart';
 import 'package:grocery_app/screens/wishlist/wishlist_screen.dart';
 import 'package:grocery_app/widgets/text_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/dark_theme_provider.dart';
 import '../services/global_methods.dart';
+import 'orders/orders_screen.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({Key? key}) : super(key: key);
@@ -93,7 +95,10 @@ class _UserScreenState extends State<UserScreen> {
                     _listTiles(
                       title: 'Orders',
                       icon: IconlyLight.bag,
-                      onPressed: () {},
+                      onPressed: () {
+                        GlobalMethods.navigateTo(
+                            ctx: context, routeName: OrdersScreen.routeName);
+                      },
                       color: color,
                     ),
                     _listTiles(
@@ -108,7 +113,10 @@ class _UserScreenState extends State<UserScreen> {
                     _listTiles(
                       title: 'Viewed',
                       icon: IconlyLight.show,
-                      onPressed: () {},
+                      onPressed: () {
+                        GlobalMethods.navigateTo(
+                            ctx: context, routeName: ViewedRecentlyScreen.routeName);
+                      },
                       color: color,
                     ),
                     _listTiles(
